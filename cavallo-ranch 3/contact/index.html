@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Cavallo Ranch</title>
+<meta name="description" content="Contact Cavallo Ranch to plan your stay, wedding, or corporate retreat in the Coachella Valley near Thermal, California.">
+<link rel="canonical" href="https://cavalloranch.com/contact">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Cavallo Ranch home">
+      <img src="/assets/logo/cavallo-logo-sand.png" alt="Cavallo Ranch">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/experience">Experience</a>
+      <a href="/stay">Stay</a>
+      <a href="/events">Events</a>
+      <a href="/local-attractions">Local Attractions</a>
+      <a href="/contact" aria-current="page">Contact</a>
+      <a class="btn" href="https://cavalloranch.guestybookings.com/properties/632a0b07d43e4d0032bd73e0">Book Your Stay</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Plan Your Stay</span>
+      <h2>Let's create something memorable</h2>
+      <p>Discover unmatched luxury at Cavallo Ranch, located in the vibrant Coachella Valley near Thermal, California. Entrust us with your desires and allow us the pleasure of curating a remarkable sojourn for you.</p>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div>
+        <form id="contactForm" novalidate>
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" autocomplete="email" required>
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel">
+          </div>
+          <div class="field">
+            <label for="interest">Interested in</label>
+            <select id="interest" name="interest">
+              <option>A vacation stay</option>
+              <option>A wedding</option>
+              <option>A birthday or anniversary</option>
+              <option>A corporate retreat</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5"></textarea>
+          </div>
+          <p class="consent">
+            I agree to be contacted by Cavallo Ranch via call, email, and text. To opt out, reply "stop" at any time or reply "help" for assistance. You can also click the unsubscribe link in the emails. Message and data rates may apply. Message frequency may vary.
+            <a href="/terms-and-conditions" style="text-decoration:underline;">Privacy Policy</a>.
+          </p>
+          <button class="btn" type="submit">Submit</button>
+          <p class="form-note" id="formNote" role="status">Message sent successfully. We'll be in touch shortly.</p>
+        </form>
+      </div>
+
+      <div>
+        <dl>
+          <div class="detail">
+            <dt>Phone</dt>
+            <dd><a href="tel:7602378048">(760) 237-8048</a></dd>
+          </div>
+          <div class="detail">
+            <dt>Email</dt>
+            <dd><a href="mailto:info@cavalloranch.com">info@cavalloranch.com</a></dd>
+          </div>
+          <div class="detail">
+            <dt>Address</dt>
+            <dd>82200 #54 Ave.<br>Thermal, CA 92274</dd>
+          </div>
+          <div class="detail">
+            <dt>Follow</dt>
+            <dd>
+              <a href="https://www.instagram.com/cavallo.ranch/">Instagram</a> &middot;
+              <a href="https://www.facebook.com/cavallo.ranch">Facebook</a> &middot;
+              <a href="https://twitter.com/CavalloRanch">X</a>
+            </dd>
+          </div>
+        </dl>
+        <p style="margin-top:2.25rem;">
+          <a class="btn btn--ghost" href="https://cavalloranch.guestybookings.com/properties/632a0b07d43e4d0032bd73e0">Check Availability</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="/assets/logo/cavallo-logo-white.png" alt="Cavallo Ranch">
+        <p>An 8,500 sq ft villa estate in the Coachella Valley. Explore, stay, and gather.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Explore</h4>
+        <a href="/experience">Experience</a>
+        <a href="/stay">Stay</a>
+        <a href="/events">Events</a>
+        <a href="/local-attractions">Local Attractions</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="tel:7602378048">(760) 237-8048</a>
+        <a href="/contact">Contact Us</a>
+        <a href="https://www.instagram.com/cavallo.ranch/">Instagram</a>
+        <a href="https://www.facebook.com/cavallo.ranch">Facebook</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; 2026 Cavallo Ranch &middot; 82200 #54 Ave., Thermal, CA 92274</span>
+      <span>All information is deemed reliable but not guaranteed.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/site.js"></script>
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!this.checkValidity()) { this.reportValidity(); return; }
+    // TODO: wire to your form handler / CRM endpoint
+    document.getElementById('formNote').style.display = 'block';
+    this.reset();
+  });
+</script>
+</body>
+</html>
