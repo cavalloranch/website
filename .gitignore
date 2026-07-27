@@ -1,0 +1,35 @@
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Source / working files — keep exports only
+*.psd
+*.ai
+*.eps
+*.sketch
+*-original.*
+*-raw.*
+
+# Large source video. The compressed hero loop under assets/video/
+# is intentionally NOT ignored — it needs to deploy with the site.
+# Keep raw camera files and uncompressed masters out of git.
+*.mov
+*.mxf
+*.prores.mp4
+assets/video/*-master.mp4
+assets/video/*-raw.mp4
+
+# Logs
+*.log
+npm-debug.log*
