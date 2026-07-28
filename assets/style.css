@@ -1,10 +1,15 @@
 /* ============================================================
    Cavallo Ranch — cavalloranch.com
-   Palette from CavalloRanch_Colors_Final.pdf (official brand):
-     #454142  PMS 4287 C   charcoal
-     #696158  PMS 405 C    warm taupe
-     #B33D26  PMS 7599 C   desert orange
-     #F8CFA9  PMS 2015 C   desert sand
+   Brand book: "Cavallo Ranch Brand Guidelines and Website RD1"
+   Palette (slide 16 — dark, rich earth tones, luxury/landscape):
+     #454142  PMS 4287 C   Slate Gray   (charcoal)
+     #696158  PMS 405 C    Warm Gray    (taupe)
+     #B33D26  PMS 7599 C   Desert Orange
+     #F8CFA9  PMS 2015 C   Polo Sand
+   Typography (slide 17):
+     Headlines/logo — Gravesend Sans (Medium/Bold) → Oswald (free stand-in,
+       condensed grotesque; set uppercase as the brand does)
+     Body/messaging — Avenir LT Pro 45 Book → Montserrat (free geometric sans)
    Clean, image-forward, generous whitespace.
    ============================================================ */
 
@@ -24,8 +29,8 @@
   --gutter: clamp(1.25rem, 5vw, 4.5rem);
   --head-h: 84px;
 
-  --f-display: "Cormorant Garamond", Georgia, serif;
-  --f-body: "Jost", system-ui, -apple-system, sans-serif;
+  --f-display: "Oswald", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Montserrat", system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -37,7 +42,7 @@ html { scroll-behavior: smooth; scroll-padding-top: var(--head-h); -webkit-text-
 
 body {
   font-family: var(--f-body);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--ink);
   background: var(--paper);
   line-height: 1.65;
@@ -49,8 +54,17 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 :focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
 
-/* ---------- type ---------- */
-h1, h2, h3 { font-family: var(--f-display); font-weight: 300; line-height: 1.1; letter-spacing: 0.005em; }
+/* ---------- type ----------
+   Oswald (→ Gravesend Sans): condensed grotesque, set uppercase and tracked,
+   Medium weight for headlines per the brand book. */
+h1, h2, h3 {
+  font-family: var(--f-display);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+h1 { font-weight: 600; }
 .eyebrow {
   display: inline-block;
   font-size: 0.7rem;
@@ -162,7 +176,7 @@ h1, h2, h3 { font-family: var(--f-display); font-weight: 300; line-height: 1.1; 
 }
 .hero .wrap { position: relative; z-index: 2; }
 .hero .eyebrow { color: var(--sand); }
-.hero h1 { font-size: clamp(3.2rem, 9vw, 7rem); margin-bottom: 1.4rem; }
+.hero h1 { font-size: clamp(3.2rem, 9vw, 7rem); margin-bottom: 1.4rem; letter-spacing: 0.01em; }
 .hero p { max-width: 56ch; margin: 0 auto 2.4rem; font-size: 1.12rem; opacity: .95; font-weight: 300; }
 
 .pagehero { min-height: clamp(380px, 55vh, 580px); }

@@ -33,3 +33,6 @@ assets/video/*-raw.mp4
 # Logs
 *.log
 npm-debug.log*
+
+# Claude Code session dir
+.claude/
