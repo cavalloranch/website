@@ -112,7 +112,7 @@ h1 { font-weight: 600; }
   border-bottom: 1px solid var(--line);
 }
 .site-head .wrap { display: flex; align-items: center; justify-content: space-between; height: var(--head-h); gap: 2rem; }
-.brand img { height: 42px; width: auto; }
+.brand img { height: 56px; width: auto; }
 .brand .brand-fallback { font-family: var(--f-display); font-size: 1.6rem; letter-spacing: .04em; color: var(--charcoal); }
 
 .nav { display: flex; align-items: center; gap: clamp(1.1rem, 2.2vw, 2.1rem); }
