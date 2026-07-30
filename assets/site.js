@@ -135,7 +135,7 @@
   // Example action URL:
   //   https://cavalloranch.us21.list-manage.com/subscribe/post?u=abc123&id=def456
   //   -> dc = "us21", u = "abc123", id = "def456"
-  var MC = { dc: '', u: '', id: '' };
+  var MC = { dc: 'us11', u: 'a66d2b2e684f4b48b4ca2a6f5', id: '239f3283db' };
   // ------------------------------------------------------------------------
   if (!MC.dc || !MC.u || !MC.id) return;                 // not configured yet
   if (localStorage.getItem('cr_signup_v1')) return;      // already seen/joined
