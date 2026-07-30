@@ -48,7 +48,7 @@
 // Room gallery lightbox: click a room to open a slideshow of its photos.
 (function () {
   var rooms = document.querySelectorAll('.room[data-images]');
-  if (!rooms.length) return;
+  if (!rooms.length && !document.querySelector('.photo-strip[data-images]')) return;
 
   var ov = document.createElement('div');
   ov.className = 'lightbox';
@@ -75,8 +75,8 @@
     ov.querySelector('.lb-prev').style.visibility = list.length > 1 ? 'visible' : 'hidden';
     ov.querySelector('.lb-next').style.visibility = list.length > 1 ? 'visible' : 'hidden';
   }
-  function open(images, t, trigger) {
-    list = images; idx = 0; title = t; lastFocus = trigger || null;
+  function open(images, t, trigger, start) {
+    list = images; idx = start || 0; title = t; lastFocus = trigger || null;
     ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     render();
@@ -103,6 +103,16 @@
     r.addEventListener('click', act);
     r.addEventListener('keydown', function (e) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); }
+    });
+  });
+
+  // Scrolling photo strips: click any thumbnail to open the lightbox at it.
+  document.querySelectorAll('.photo-strip[data-images]').forEach(function (strip) {
+    var imgs = strip.getAttribute('data-images').split(',')
+      .map(function (s) { return s.trim(); }).filter(Boolean);
+    var t = strip.getAttribute('data-title') || '';
+    strip.querySelectorAll('.ps-item').forEach(function (it, i) {
+      it.addEventListener('click', function () { open(imgs, t, it, i); });
     });
   });
 
