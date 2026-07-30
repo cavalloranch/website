@@ -35,12 +35,85 @@
   var els = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window)) {
     els.forEach(function (el) { el.classList.add('in'); });
-    return;
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
   }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+})();
+
+// Room gallery lightbox: click a room to open a slideshow of its photos.
+(function () {
+  var rooms = document.querySelectorAll('.room[data-images]');
+  if (!rooms.length) return;
+
+  var ov = document.createElement('div');
+  ov.className = 'lightbox';
+  ov.setAttribute('aria-hidden', 'true');
+  ov.setAttribute('role', 'dialog');
+  ov.setAttribute('aria-modal', 'true');
+  ov.innerHTML =
+    '<button class="lb-close" aria-label="Close">&times;</button>' +
+    '<button class="lb-nav lb-prev" aria-label="Previous image">&#8249;</button>' +
+    '<figure class="lb-stage"><img alt=""><figcaption class="lb-cap"></figcaption></figure>' +
+    '<button class="lb-nav lb-next" aria-label="Next image">&#8250;</button>' +
+    '<div class="lb-count" aria-hidden="true"></div>';
+  document.body.appendChild(ov);
+
+  var imgEl = ov.querySelector('img');
+  var capEl = ov.querySelector('.lb-cap');
+  var countEl = ov.querySelector('.lb-count');
+  var list = [], idx = 0, title = '', lastFocus = null;
+
+  function render() {
+    imgEl.src = list[idx];
+    capEl.textContent = title;
+    countEl.textContent = (idx + 1) + ' / ' + list.length;
+    ov.querySelector('.lb-prev').style.visibility = list.length > 1 ? 'visible' : 'hidden';
+    ov.querySelector('.lb-next').style.visibility = list.length > 1 ? 'visible' : 'hidden';
+  }
+  function open(images, t, trigger) {
+    list = images; idx = 0; title = t; lastFocus = trigger || null;
+    ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    render();
+    ov.querySelector('.lb-close').focus();
+  }
+  function close() {
+    ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; imgEl.removeAttribute('src');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function step(d) { idx = (idx + d + list.length) % list.length; render(); }
+
+  rooms.forEach(function (r) {
+    r.classList.add('room--clickable');
+    r.setAttribute('role', 'button');
+    r.setAttribute('tabindex', '0');
+    function act() {
+      var imgs = r.getAttribute('data-images').split(',')
+        .map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!imgs.length) return;
+      var h = r.querySelector('h3');
+      open(imgs, h ? h.textContent : '', r);
+    }
+    r.addEventListener('click', act);
+    r.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); act(); }
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  els.forEach(function (el) { io.observe(el); });
+  });
+
+  ov.querySelector('.lb-close').addEventListener('click', close);
+  ov.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
+  ov.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); step(1); });
+  ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!ov.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') step(1);
+    else if (e.key === 'ArrowLeft') step(-1);
+  });
 })();
