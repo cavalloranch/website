@@ -192,7 +192,7 @@ h1 { font-weight: 600; }
 .hero h1 { font-size: clamp(3.2rem, 9vw, 7rem); margin-bottom: 1.4rem; letter-spacing: 0.01em; }
 .hero p { max-width: 56ch; margin: 0 auto 2.4rem; font-size: 1.12rem; opacity: .95; font-weight: 300; }
 
-.pagehero { min-height: clamp(380px, 55vh, 580px); }
+.pagehero { min-height: clamp(520px, 78vh, 820px); }
 .pagehero h1 { font-size: clamp(2.6rem, 7vw, 5rem); margin-bottom: 0; }
 
 /* ---------- sections ---------- */
@@ -310,6 +310,8 @@ h1 { font-weight: 600; }
   background: #fff; font-family: var(--f-body); font-size: 1rem; font-weight: 300; color: var(--ink);
 }
 .field textarea { resize: vertical; }
+.contact-photo { margin: 0 0 2rem; aspect-ratio: 4 / 3; overflow: hidden; background: var(--sand-tint); }
+.contact-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .detail { display: grid; grid-template-columns: 96px 1fr; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--line); }
 .detail:first-child { border-top: 1px solid var(--line); }
 .detail dt { font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); padding-top: .2rem; }
@@ -401,6 +403,18 @@ h1 { font-weight: 600; }
   .lb-nav { width: 42px; height: 42px; font-size: 1.8rem; }
   .lb-prev { left: .4rem; } .lb-next { right: .4rem; }
 }
+
+/* ---------- floating Inquire button ---------- */
+.inquire-fab {
+  position: fixed; left: 1.1rem; bottom: 1.1rem; z-index: 900;
+  display: inline-block; background: var(--orange); color: #fff;
+  font-family: var(--f-body); font-weight: 500; font-size: .72rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  padding: .85rem 1.4rem; box-shadow: 0 6px 20px rgba(0,0,0,.22);
+  transition: background .25s, transform .25s;
+}
+.inquire-fab:hover { background: var(--charcoal); transform: translateY(-2px); color: #fff; }
+@media (max-width: 600px) { .inquire-fab { left: .75rem; bottom: .75rem; padding: .75rem 1.1rem; } }
 
 /* ---------- reveal ---------- */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
