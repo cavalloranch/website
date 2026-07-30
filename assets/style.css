@@ -277,6 +277,17 @@ h1 { font-weight: 600; }
   .attraction .dist { grid-column: 2; }
 }
 
+/* ---------- map embed ---------- */
+.map-embed {
+  margin-top: clamp(2rem, 4vw, 3.25rem);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--sand-tint);
+}
+.map-embed iframe { width: 100%; height: 100%; border: 0; display: block; }
+@media (max-width: 660px) { .map-embed { aspect-ratio: 4 / 3; } }
+
 /* ---------- CTA band ---------- */
 .cta { background: var(--charcoal); color: #fff; text-align: center; padding-block: clamp(4.5rem, 8vw, 7.5rem); }
 .cta .eyebrow { color: var(--sand); }
@@ -304,7 +315,7 @@ h1 { font-weight: 600; }
 /* ---------- footer ---------- */
 .site-foot { background: var(--charcoal); color: rgba(255,255,255,.82); padding-block: clamp(3.5rem, 6vw, 5.5rem); }
 .foot-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 3rem; margin-bottom: 3.5rem; }
-.foot-brand img { height: 46px; width: auto; margin-bottom: 1.25rem; }
+.foot-brand img { height: 66px; width: auto; margin-bottom: 1.25rem; }
 .foot-brand p { max-width: 32ch; font-size: .95rem; opacity: .8; }
 .foot-col h4 { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--sand); margin-bottom: 1.2rem; font-family: var(--f-body); font-weight: 400; }
 .foot-col a { display: block; padding: .38rem 0; font-size: .95rem; transition: color .25s; }
