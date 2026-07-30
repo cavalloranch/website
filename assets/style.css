@@ -416,6 +416,21 @@ h1 { font-weight: 600; }
 .inquire-fab:hover { background: var(--charcoal); transform: translateY(-2px); color: #fff; }
 @media (max-width: 600px) { .inquire-fab { left: .75rem; bottom: .75rem; padding: .75rem 1.1rem; } }
 
+/* ---------- email signup popup ---------- */
+.signup { position: fixed; inset: 0; z-index: 1100; display: none; align-items: center; justify-content: center; background: rgba(20,18,18,.6); padding: 1.25rem; }
+.signup.open { display: flex; }
+.signup__card { position: relative; background: var(--paper); max-width: 420px; width: 100%; padding: clamp(1.75rem, 4vw, 2.75rem); border-top: 3px solid var(--orange); box-shadow: 0 20px 60px rgba(0,0,0,.3); }
+.signup__card h3 { font-size: 1.8rem; margin: .35rem 0 .6rem; }
+.signup__card p { color: var(--muted); font-size: .98rem; }
+.signup__close { position: absolute; top: .5rem; right: .8rem; background: none; border: 0; font-size: 1.9rem; line-height: 1; color: var(--muted); cursor: pointer; }
+.signup__form { margin-top: 1.25rem; display: flex; flex-direction: column; gap: .75rem; }
+.signup__form input { padding: .9rem 1rem; border: 1px solid var(--line); background: #fff; font-family: var(--f-body); font-size: 1rem; color: var(--ink); }
+.signup__form .btn { margin-top: .25rem; }
+.signup__note { font-size: .72rem; color: var(--muted); line-height: 1.5; }
+.signup__note a { text-decoration: underline; }
+.signup__msg { font-size: .85rem; color: var(--orange); font-weight: 500; margin-top: .25rem; }
+.signup__msg:empty { display: none; }
+
 /* ---------- reveal ---------- */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
 .reveal.in { opacity: 1; transform: none; }

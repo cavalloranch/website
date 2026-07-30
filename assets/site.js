@@ -127,3 +127,69 @@
     else if (e.key === 'ArrowLeft') step(-1);
   });
 })();
+
+// Email-capture popup (name + email). Wired for Mailchimp's JSONP endpoint.
+// Stays DORMANT until MC config below is filled in — safe to deploy as-is.
+(function () {
+  // ---- Mailchimp config: fill these from your embedded-form action URL ----
+  // Example action URL:
+  //   https://cavalloranch.us21.list-manage.com/subscribe/post?u=abc123&id=def456
+  //   -> dc = "us21", u = "abc123", id = "def456"
+  var MC = { dc: '', u: '', id: '' };
+  // ------------------------------------------------------------------------
+  if (!MC.dc || !MC.u || !MC.id) return;                 // not configured yet
+  if (localStorage.getItem('cr_signup_v1')) return;      // already seen/joined
+
+  var ov = document.createElement('div');
+  ov.className = 'signup';
+  ov.setAttribute('role', 'dialog');
+  ov.setAttribute('aria-modal', 'true');
+  ov.setAttribute('aria-label', 'Join the Cavallo Ranch list');
+  ov.innerHTML =
+    '<div class="signup__card">' +
+      '<button class="signup__close" aria-label="Close">&times;</button>' +
+      '<span class="eyebrow">Stay in touch</span>' +
+      '<h3>Join the Cavallo Ranch list</h3>' +
+      '<p>Be first to hear about availability, offers, and news from the ranch.</p>' +
+      '<form class="signup__form" novalidate>' +
+        '<input type="text" name="name" placeholder="Name" autocomplete="name" required>' +
+        '<input type="email" name="email" placeholder="Email" autocomplete="email" required>' +
+        '<button class="btn" type="submit">Sign Up</button>' +
+        '<p class="signup__note">By signing up you agree to receive emails from Cavallo Ranch. See our <a href="/privacy-policy">Privacy Policy</a>.</p>' +
+        '<p class="signup__msg" role="status"></p>' +
+      '</form>' +
+    '</div>';
+  document.body.appendChild(ov);
+
+  var form = ov.querySelector('.signup__form');
+  var msg = ov.querySelector('.signup__msg');
+  function openIt() { ov.classList.add('open'); }
+  function closeIt() { ov.classList.remove('open'); }
+  function remember() { try { localStorage.setItem('cr_signup_v1', '1'); } catch (e) {} }
+
+  ov.querySelector('.signup__close').addEventListener('click', function () { closeIt(); remember(); });
+  ov.addEventListener('click', function (e) { if (e.target === ov) { closeIt(); remember(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && ov.classList.contains('open')) { closeIt(); remember(); } });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var name = form.name.value.trim(), email = form.email.value.trim();
+    msg.textContent = 'Signing you up…';
+    var cb = 'mc_cb_' + Date.now();
+    window[cb] = function (resp) {
+      delete window[cb];
+      var ok = resp && resp.result === 'success';
+      msg.textContent = ok ? "Thank you — you're on the list." : (resp && resp.msg ? String(resp.msg).replace(/^\d+\s*-\s*/, '') : 'Something went wrong — please try again.');
+      if (ok) { remember(); setTimeout(closeIt, 1800); }
+    };
+    var q = 'u=' + encodeURIComponent(MC.u) + '&id=' + encodeURIComponent(MC.id) +
+            '&EMAIL=' + encodeURIComponent(email) + '&FNAME=' + encodeURIComponent(name) + '&c=' + cb;
+    var s = document.createElement('script');
+    s.src = 'https://' + MC.dc + '.list-manage.com/subscribe/post-json?' + q;
+    s.onerror = function () { msg.textContent = 'Network error — please try again.'; };
+    document.body.appendChild(s);
+  });
+
+  setTimeout(openIt, 7000);  // show after 7s on first visit
+})();
