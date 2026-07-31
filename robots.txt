@@ -1,12 +1,4 @@
-# Private preview — not for indexing.
-# Before launching on cavalloranch.com, replace the contents of this file
-# with the production version below and remove the X-Robots-Tag header
-# from vercel.json.
 User-agent: *
-Disallow: /
+Allow: /
 
-# --- PRODUCTION VERSION (swap in at launch) ---
-# User-agent: *
-# Allow: /
-#
-# Sitemap: https://cavalloranch.com/sitemap.xml
+Sitemap: https://cavalloranch.com/sitemap.xml
