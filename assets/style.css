@@ -417,6 +417,10 @@ a.card:hover h3 { color: var(--orange); }
   .lb-prev { left: .4rem; } .lb-next { right: .4rem; }
 }
 
+/* ---------- inline feature video (Experience: Maker) ---------- */
+.maker-video { max-width: 1000px; margin: 0 auto clamp(3rem, 6vw, 6rem); }
+.maker-video video { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: var(--charcoal); }
+
 /* ---------- video gallery ---------- */
 .video-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(1rem, 2vw, 1.75rem); }
 @media (max-width: 640px) { .video-grid { grid-template-columns: 1fr; } }

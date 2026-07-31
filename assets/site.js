@@ -193,3 +193,14 @@
 
   setTimeout(openIt, 7000);  // show after 7s on first visit
 })();
+
+// Cap playback for any video with a data-stop="<seconds>" attribute.
+(function () {
+  document.querySelectorAll('video[data-stop]').forEach(function (v) {
+    var stop = parseFloat(v.getAttribute('data-stop'));
+    if (!stop) return;
+    v.addEventListener('timeupdate', function () {
+      if (v.currentTime >= stop) { v.pause(); }
+    });
+  });
+})();
