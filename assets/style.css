@@ -418,7 +418,7 @@ a.card:hover h3 { color: var(--orange); }
 }
 
 /* ---------- inline feature video (Experience: Maker) ---------- */
-.maker-video { max-width: 1000px; margin: 0 auto clamp(3rem, 6vw, 6rem); }
+.maker-video { max-width: 1000px; margin: 0 auto; }
 .maker-video video { width: 100%; height: auto; display: block; border: 1px solid var(--line); background: var(--charcoal); }
 
 /* ---------- video gallery ---------- */
